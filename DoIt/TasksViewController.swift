@@ -9,11 +9,13 @@
 import UIKit
 
 class TasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     //make a variable that holds all the tasks to display
     var tasks : [Task] = []
+    
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,13 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+        
+        let task = tasks[indexPath.row]
+        performSegue(withIdentifier: "selectTaskSegue", sender: task)
+    }
+    
     //function that makes tasks
     func makeTasks() -> [Task] {
         let task1 = Task()
@@ -64,12 +73,22 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //add the plus button from UI
     @IBAction func plusTapped(_ sender: Any) {
-        performSegue(withIdentifier: "addSegua", sender: nil)
+        performSegue(withIdentifier: "addSegue", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! CreateTaskViewController
-        nextVC.previousVC = self
+        //if add segue is initiated
+        if segue.identifier == "addSegue" {
+            let nextVC = segue.destination as! CreateTaskViewController
+            nextVC.previousVC = self
+        }
+        
+        //if select button is initiated
+        if segue.identifier == "selectTaskSegue" {
+            let nextVC = segue.destination as! CompleteTaskViewController
+            nextVC.task = sender as! Task
+            nextVC.previousVC = self
+        }
     }
     
 }
