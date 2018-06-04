@@ -17,6 +17,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var selectedIndex = 0
     
+    //just the first time
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,6 +25,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         //this needs to be last - it'll load whatever it finds at the time
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    //when the screen is about to show
+    override func viewWillAppear(_ animated: Bool) {
+        getTasks()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,13 +62,16 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         performSegue(withIdentifier: "addSegue", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //if add segue is initiated
-        if segue.identifier == "addSegue" {
-            let nextVC = segue.destination as! CreateTaskViewController
-            nextVC.previousVC = self
+    //get the tasks from CoreData
+    func getTasks() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            tasks = try context.fetch(Task.fetchRequest()) as! [Task]
+        } catch {
+            print("ERROR WITH FETCH")
         }
-        
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //if select button is initiated
         if segue.identifier == "selectTaskSegue" {
             let nextVC = segue.destination as! CompleteTaskViewController
