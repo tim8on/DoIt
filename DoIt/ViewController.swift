@@ -61,6 +61,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return [task1, task2, task3]
     }
-
+    
+    //add the plus button from UI
+    @IBAction func plusTapped(_ sender: Any) {
+        performSegue(withIdentifier: "addSegua", sender: nil)
+    }
+    
 }
 
