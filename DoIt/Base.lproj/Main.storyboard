@@ -122,14 +122,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxv-8H-6Ww">
-                                <rect key="frame" x="166" y="157" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxv-8H-6Ww">
+                                <rect key="frame" x="166" y="164" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5B-bB-0Ts">
-                                <rect key="frame" x="154" y="277" width="67" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5B-bB-0Ts">
+                                <rect key="frame" x="154" y="285" width="67" height="30"/>
                                 <state key="normal" title="Complete"/>
                                 <connections>
                                     <action selector="completeTapped:" destination="FCY-un-8Xt" eventType="touchUpInside" id="nNM-PK-Fpy"/>
@@ -141,6 +141,7 @@
                             <constraint firstItem="Zxv-8H-6Ww" firstAttribute="centerX" secondItem="TFP-hA-gtL" secondAttribute="centerX" id="Ef5-S2-adi"/>
                             <constraint firstItem="k5B-bB-0Ts" firstAttribute="top" secondItem="Zxv-8H-6Ww" secondAttribute="bottom" constant="100" id="b6u-zu-YPi"/>
                             <constraint firstItem="k5B-bB-0Ts" firstAttribute="centerX" secondItem="TFP-hA-gtL" secondAttribute="centerX" id="kg7-uL-a33"/>
+                            <constraint firstItem="Zxv-8H-6Ww" firstAttribute="top" secondItem="uqm-mo-HpB" secondAttribute="top" constant="100" id="pxQ-1B-wdi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uqm-mo-HpB"/>
                     </view>
