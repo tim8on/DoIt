@@ -15,13 +15,12 @@ class CompleteTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        taskLabel.text = task?.name!
 
-//        if task!.important {
-//            taskLabel.text = "❗️\(task!.name!)"
-//        } else {
-//            taskLabel.text = task!.name!
-//        }
+        if task!.important {
+            taskLabel.text = "❗️\(task!.name!)"
+        } else {
+            taskLabel.text = task!.name!
+        }
     }
     
     @IBAction func completeTapped(_ sender: Any) {

@@ -27,7 +27,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //when the screen is about to show
     override func viewWillAppear(_ animated: Bool) {
-        getTasks()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        do {
+            tasks = try context.fetch(Task.fetchRequest()) as! [Task]
+        } catch {
+            print("ERROR WITH FETCH")
+        }
         tableView.reloadData()
     }
     
@@ -60,22 +65,13 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         performSegue(withIdentifier: "addSegue", sender: nil)
     }
     
-    //get the tasks from CoreData
-    func getTasks() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        do {
-            tasks = try context.fetch(Task.fetchRequest()) as! [Task]
-        } catch {
-            print("ERROR WITH FETCH")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //if select button is initiated
+        if segue.identifier == "selectTaskSegue" {
+            let nextVC = segue.destination as! CompleteTaskViewController
+            nextVC.task = sender as? Task
         }
-        
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            //if select button is initiated
-            if segue.identifier == "selectTaskSegue" {
-                let nextVC = segue.destination as! CompleteTaskViewController
-                nextVC.task = sender as? Task
-            }
-        }
-        
     }
+    
 }
+
